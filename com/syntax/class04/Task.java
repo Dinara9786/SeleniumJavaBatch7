@@ -5,40 +5,41 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Task {
-
-//	Open chrome browser
-//	Go to “http://166.62.36.207/humanresources/symfony/web/index.php/auth/login”
-//	Enter valid username and password (username - Admin, password - Hum@nhrm123)
-//	Click on login button
-//	Then verify Syntax Logo is displayed.
+//Open chrome browser
+//Go to “http://166.62.36.207/humanresources/symfony/web/index.php/auth/login”
+//Enter valid username and password (username - Admin, password - Hum@nhrm123)
+//Click on login button
+//Then verify Syntax Logo is displayed.
 	
-	public static String url = "http://166.62.36.207/humanresources/symfony/web/index.php/auth/login";
-	public static void main(String[] args) throws InterruptedException {
+	public class Task {	
 		
+		public static String url = "http://166.62.36.207/humanresources/symfony/web/index.php/auth/login";
 		
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+	public static void main(String[] args) {
 		
-		WebDriver driver = new ChromeDriver();
+	System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+	
+	WebDriver driver = new ChromeDriver();
+	
+	driver.get(url);
+	
+	WebElement usernameBox = driver.findElement(By.xpath("//input[@name='txtUsername']"));
+	usernameBox.sendKeys("Admin");
+	
+	WebElement passwordBox = driver.findElement(By.xpath("//input[@name='txtPassword']"));
+	passwordBox.sendKeys("Hum@nhrm123");
+	
+	WebElement loginBtn = driver.findElement(By.xpath("//input[@id='btnLogin']"));
+	loginBtn.click();
+	
+	WebElement logo = driver.findElement(By.xpath("//img[@alt = 'OrangeHRM']"));
+	
+	if (logo.isDisplayed()) {
 		
-		driver.get(url);
-		
-		WebElement username = driver.findElement(By.xpath("//input[@id = 'txtUsername']"));
-		username.sendKeys("Admin");
-		
-		WebElement password = driver.findElement(By.xpath("//input[@id = 'txtPassword']"));
-		password.sendKeys("Hum@nhrm123");
-		
-		WebElement loginButton = driver.findElement(By.xpath("//input[@value = 'LOGIN']"));
-		loginButton.click();
-		
-		WebElement logo = driver.findElement(By.xpath("//img[@alt = 'OrangeHRM']"));
-		
-		if (logo.isDisplayed()) {
-			System.out.println("Logo is displayed");
+			System.out.println("The logo is displayed");
 		} else {
-			System.out.println("Logo is not displayed");
+			System.out.println("The logo is NOT displayed");
 		}
-		
 	}
 }
+

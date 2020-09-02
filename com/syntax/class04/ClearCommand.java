@@ -11,7 +11,6 @@ public class ClearCommand {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
-		
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 		
 		WebDriver driver = new ChromeDriver();
@@ -24,27 +23,24 @@ public class ClearCommand {
 		WebElement passwordTextBox = driver.findElement(By.name("ctl00$MainContent$password"));
 		passwordTextBox.sendKeys("test");
 		
-		userNameTextBox.clear();
-		passwordTextBox.clear();
 		Thread.sleep(2000);
-
-//		WebElement loginButton = driver.findElement(By.className("button"));
-//		loginButton.click();
-//		//driver.findElement(By.name("ctl00$MainContent$login_button")).click();
-//		Thread.sleep(2000);
-//		
-//		//passwordTextBox.clear();
-//		//userNameTextBox.clear();
-//		//driver.findElement(By.name("ctl00$MainContent$login_button")).click();
-//		WebElement logo = driver.findElement(By.xpath("//h1[text()='Web Orders']"));
-//		
-//		if(logo.isDisplayed()) {
-//			String logoText = logo.getText();
-//			if (logoText.equals("Web Orders")) {
-//				System.out.println("This is the right logo");
-//			}else {
-//				System.out.println("This is the wrong logo");
-			}
+	
+		WebElement loginButton = driver.findElement(By.className("button"));
+		loginButton.click();
 		
+		WebElement logo = driver.findElement(By.xpath("//h1[text()='Web Orders']"));
+		
+		if (logo.isDisplayed()) {
+			String logoText = logo.getText();
+			if(logoText.equals("Web Orders")) {
+				System.out.println("This is the right logo");
+			} else {
+				System.out.println("This is NOT right logo");
+			}
+		}
+	}
 }
-
+		
+//		userNameTextBox.clear();
+//		passwordTextBox .clear();
+		
